@@ -1,6 +1,8 @@
+package esportsmanagement;
+
 import java.sql.*;
 
-public class ConnectionProvider {
+public class ConnectionProvid {
     private static Connection con;
 
     // tobimarker

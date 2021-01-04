@@ -1,5 +1,3 @@
-package esportsmanagement;
-
 public class Sponsor {
 
     private String sponsorName;

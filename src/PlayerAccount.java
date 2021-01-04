@@ -1,6 +1,3 @@
-package esportsmanagement;
-
-
 public class PlayerAccount {
 
     private String nick;
