@@ -2,7 +2,7 @@ import java.util.Hashtable;
 
 import javax.net.ssl.SSLEngineResult.HandshakeStatus;
 
-public class CSGO extends Game implements PrizePoolInterface {
+public class CSGO extends Game {
     private final int ROUNDS = 30;
     private final String[] MAPS = {
         "Inferno",
@@ -16,31 +16,50 @@ public class CSGO extends Game implements PrizePoolInterface {
 
     private String chosenMap;
     private int currentRound;
-    private Hashtable<Team, Integer> team = new Hashtable<Team, Integer>();
-    private Hashtable<String, Team> sides = new Hashtable<String, Team>();
-    private String[] history = new String[30];
+    private Team ct;
+    private Team t;
+    // [CT, T]
+    private int[] scores = new int[2];
+    private Team winner; 
 
-    public CSGO() {
+    public CSGO(String map, Team ct, Team t) {
+        this.chosenMap = map;
+        this.currentRound = 1;
+        this.ct = ct;
+        this.t = t;
+        this.scores[0] = 0;
+        this.scores[1] = 0;
     }
 
-    
-
-    //Add-in BEGIN
     @Override
-    public void displayGameInfo() {
-        System.out.println("Counter Strike Global Offensive (GSGO) ist ein Computerspiel aus dem Genre der Online-Taktik-Shooter. Bei dem Spiel treten zwei Teams mit je fünf Spielern gegeneinander an. Wobei jedes Team bestimmte Ziele erreichen muss, um zu gewinnen. Ein Team übernimmt die Rolle der Terroristen (Ts), während das andere Team die Antiterroristen (CTs) sind.");
+    void displayGameInfo() {
+        // TODO Auto-generated method stub
+
     }
 
-    @Override
-    public void setGamePrizePool() {
-        this.setPrizepool(this.getAverageRevenue());
-    }
-    //Add-in END
+    public void roundPlayed(String winner) {
+        int ind;
+        if (winner.toLowerCase() == "ct") {
+            ind = 0;
+        } else if (winner.toLowerCase() == "ct") {
+            ind = 1;
+        } else { return; }
 
-    private void setPrizepool(Object averageRevenue) {
+        this.currentRound++;
+        this.scores[ind]++;
+
+        if (currentRound == 15) {
+            // change sides
+        }
+
+        if (scores[0] == 16) {
+            this.winner = ct;
+        } else if (scores[1] == 16) {
+            this.winner = t;
+        }
     }
 
-    private Object getAverageRevenue() {
-        return null;
-    } 
+    public Team getWinner() {
+        return winner;
+    }
 }

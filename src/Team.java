@@ -18,14 +18,37 @@ public class Team {
         playerList= new ArrayList<Player>();
     }
 
-    // Methods
 
-    // Methode: Zeige Team (mit graphisches Interface)
-    // Methode: AddPlayerToList
-    // marker evtl AddGameToList
+    public String getTeamName() {
+        return this.teamName;
+    }
 
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
 
-    // Getter & Setter
+    public int getTotalWins() {
+        return this.totalWins;
+    }
 
+    public void setTotalWins(int totalWins) {
+        this.totalWins = totalWins;
+    }
 
+    public int getRanking() {
+        return this.ranking;
+    }
+
+    public void setRanking(int ranking) {
+        this.ranking = ranking;
+    }
+
+    public List<Player> getPlayerList() {
+        return this.playerList;
+    }
+
+    public void setPlayerList(List<Player> playerList) {
+        this.playerList = playerList;
+    }
+    
 }
