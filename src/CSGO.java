@@ -23,6 +23,8 @@ public class CSGO extends Game implements PrizePoolInterface {
     public CSGO() {
     }
 
+    
+
     //Add-in BEGIN
     @Override
     public void displayGameInfo() {
