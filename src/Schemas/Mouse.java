@@ -1,28 +1,25 @@
+package Schemas;
+
 import java.util.Date;
 
-public class Keyboard extends Inventory {
-    
-    private boolean mechanical;
-    private String type;
+public class Mouse extends Inventory {
+    private int dpi;
     private int programmableButtons;
     private String connectionType;
     private int responseRate;
-    
-    public Keyboard(int id, Date bought, int price, String brand, String model, boolean mechanical, String type, int programmableButtons, String connectionType, int responseRate) {
+
+
+    public Mouse(int id, Date bought, int price, String brand, String model, int dpi, int programmableButtons, String connectionType, int responseRate) {
         super(id, bought, price, brand, model);
-        this.mechanical = mechanical;
-        this.type = type;
+        this.dpi = dpi;
         this.programmableButtons = programmableButtons;
         this.connectionType = connectionType;
         this.responseRate = responseRate;
     }
 
-    public boolean isMechanical() {
-        return this.mechanical;
-    }
 
-    public String getType() {
-        return this.type;
+    public int getDpi() {
+        return this.dpi;
     }
 
     public int getProgrammableButtons() {
@@ -36,5 +33,4 @@ public class Keyboard extends Inventory {
     public int getResponseRate() {
         return this.responseRate;
     }
-
 }

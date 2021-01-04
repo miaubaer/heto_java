@@ -1,3 +1,5 @@
+package Schemas;
+
 import java.util.Hashtable;
 
 import javax.net.ssl.SSLEngineResult.HandshakeStatus;

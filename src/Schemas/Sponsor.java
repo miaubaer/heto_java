@@ -1,3 +1,5 @@
+package Schemas;
+
 public class Sponsor {
 
     private String sponsorName;

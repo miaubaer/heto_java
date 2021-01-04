@@ -1,3 +1,5 @@
+package Schemas;
+
 import java.util.Objects;
 
 public class Dota extends Game implements PrizePoolInterface {
