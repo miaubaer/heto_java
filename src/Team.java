@@ -15,7 +15,7 @@ public class Team {
         this.playerList = playerList;
         this.totalWins = totalWins;
         this.ranking = ranking;
-        playerList= new ArrayList<Player>();
+        this.playerList = new ArrayList<Player>();
     }
 
 
