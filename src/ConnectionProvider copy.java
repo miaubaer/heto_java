@@ -1,5 +1,3 @@
-package esportsmanagement;
-
 import java.sql.*;
 
 public class ConnectionProvider {
