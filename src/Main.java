@@ -1,7 +1,14 @@
 import java.io.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.*;
 import java.sql.*;
 import java.util.*;
-
+import java.util.logging.*;
+import javax.imageio.*;
+import javax.swing.*;
 
 public class Main {
 
@@ -26,7 +33,7 @@ public class Main {
         JFrame eSports= new JFrame("Esports Event Info");
         int input,input2, headphoneCount, pcCount, mouseCount, keyboardCount, monitorCount, frontRowSeats, backRowSeats, VIPRooms, foodCapacity;
         String eventName, eventLocation, query;
-        Inventory eventInventory;
+       //markerUseLater Inventory eventInventory;
         boolean flag=false;
         boolean exitFlag=false;
         Event newEvent;
