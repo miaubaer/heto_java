@@ -11,7 +11,7 @@ public class Main {
     static Random rand = new Random();
 
     public Main() throws ClassNotFoundException {
-        this.con = ConnectionProvider.getConnection();
+        // this.con = ConnectionProvider.getConnection();
 
     }
 }
