@@ -17,39 +17,39 @@ import java.awt.GraphicsEnvironment;
 
 import Schemas.*;
 
-public class StartWindow extends JFrame {
+public class StartWindow extends JFrame {/*
     private JPanel startPanel = new JPanel();
 
     // Built-in lists of team for tests
-    Team[] tl1 = {
-        new Team("OG", new String[]{"NBK", "Aleksib", "valde", "ISSAA", "mantuu"}),
-        new Team("Team Vitality", new String[]{"apEX", "RpK", "ZywOo", "shox", "misutaaa"}),
-        new Team("G2 Esports", new String[]{"kennys", "AmaNEk", "nexa", "huNter-", "NiKo"}),
-        new Team("Natus Vincere", new String[]{"fampie", "s1mple", "electronic", "Boombl4", "Perfecto"}),
-        new Team("BIG", new String[]{"tabseN", "tizian", "XANTERES", "syrsoN", "k1to"}),
-        new Team("Astralis", new String[]{"device", "dupreeh", "Xyp9x", "gla1ve", "Magisk"}),
-        new Team("FURIA Esports", new String[]{"yuurih", "arT", "VINI", "KSCERATO", "HEN1"}),
-        new Team("mousesports", new String[]{"chrisj", "ropz", "karrigen", "frozen", "Bymas"}),
+    Schemas.Team[] tl1 = {
+        new Schemas.Team("OG", new String[]{"NBK", "Aleksib", "valde", "ISSAA", "mantuu"}),
+        new Schemas.Team("Schemas.Team Vitality", new String[]{"apEX", "RpK", "ZywOo", "shox", "misutaaa"}),
+        new Schemas.Team("G2 Esports", new String[]{"kennys", "AmaNEk", "nexa", "huNter-", "NiKo"}),
+        new Schemas.Team("Natus Vincere", new String[]{"fampie", "s1mple", "electronic", "Boombl4", "Perfecto"}),
+        new Schemas.Team("BIG", new String[]{"tabseN", "tizian", "XANTERES", "syrsoN", "k1to"}),
+        new Schemas.Team("Astralis", new String[]{"device", "dupreeh", "Xyp9x", "gla1ve", "Magisk"}),
+        new Schemas.Team("FURIA Esports", new String[]{"yuurih", "arT", "VINI", "KSCERATO", "HEN1"}),
+        new Schemas.Team("mousesports", new String[]{"chrisj", "ropz", "karrigen", "frozen", "Bymas"}),
     };
-    Team[] tl2 = {
-        new Team("Cloud9", new String[]{"floppy", "ALEX", "mezil", "woxic", "es3tag"}),
-        new Team("c0ntact Gaming", new String[]{"EspiranTo", "ottoNd", "Snappi", "Spinx", "rigoN"}),
-        new Team("Dignitas", new String[]{"f0rest", "friberg", "hallzerk", "H4RR3", "HEAP"}),
-        new Team("Team Envy", new String[]{"Nifty", "Calyx", "MICHU", "LEGIJA", "Thomas"}),
-        new Team("Gen.G Esports", new String[]{"autimatic", "koosta", "BnTeT", "Xizt", "kreaz"}),
-        new Team("MAD Lions", new String[]{"acoR", "sjuush", "roej", "HooXi", "refrezh"}),
-        new Team("MIBR", new String[]{"kNgV-", "trk", "LUCAS1", "leo_drk", "v$m"}),
-        new Team("BIG", new String[]{"tabseN", "tizian", "XANTERES", "syrsoN", "k1to"}),
-        new Team("Fnatic", new String[]{"KRIMZ", "JW", "Brollan", "flusha", "Golden"}),
-        new Team("OG", new String[]{"NBK", "Aleksib", "valde", "ISSAA", "mantuu"}),
-        new Team("Virtus.pro", new String[]{"buster", "qikert", "jame", "SANJI", "YEKINDAR"}),
-        new Team("forZe", new String[]{"facecrack", "Jerry", "almazer", "xsepower", "FL1T"}),
+    Schemas.Team[] tl2 = {
+        new Schemas.Team("Cloud9", new String[]{"floppy", "ALEX", "mezil", "woxic", "es3tag"}),
+        new Schemas.Team("c0ntact Gaming", new String[]{"EspiranTo", "ottoNd", "Snappi", "Spinx", "rigoN"}),
+        new Schemas.Team("Dignitas", new String[]{"f0rest", "friberg", "hallzerk", "H4RR3", "HEAP"}),
+        new Schemas.Team("Schemas.Team Envy", new String[]{"Nifty", "Calyx", "MICHU", "LEGIJA", "Thomas"}),
+        new Schemas.Team("Gen.G Esports", new String[]{"autimatic", "koosta", "BnTeT", "Xizt", "kreaz"}),
+        new Schemas.Team("MAD Lions", new String[]{"acoR", "sjuush", "roej", "HooXi", "refrezh"}),
+        new Schemas.Team("MIBR", new String[]{"kNgV-", "trk", "LUCAS1", "leo_drk", "v$m"}),
+        new Schemas.Team("BIG", new String[]{"tabseN", "tizian", "XANTERES", "syrsoN", "k1to"}),
+        new Schemas.Team("Fnatic", new String[]{"KRIMZ", "JW", "Brollan", "flusha", "Golden"}),
+        new Schemas.Team("OG", new String[]{"NBK", "Aleksib", "valde", "ISSAA", "mantuu"}),
+        new Schemas.Team("Virtus.pro", new String[]{"buster", "qikert", "jame", "SANJI", "YEKINDAR"}),
+        new Schemas.Team("forZe", new String[]{"facecrack", "Jerry", "almazer", "xsepower", "FL1T"}),
     };
 
     // Built-in events just for test
-    private Event[] events = {
+    private Schemas.Event[] events = {
         // https://liquipedia.net/counterstrike/BLAST/Premier/2020/Fall
-        new Event(
+        new Schemas.Event(
             "BLAST Premier", 
             "Europe", 
             425000.0, 
@@ -58,7 +58,7 @@ public class StartWindow extends JFrame {
             }, 
             Arrays.asList(tl1)
         ),
-        new Event(
+        new Schemas.Event(
             "Flashpoint Season 2", 
             "Europe", 
             1000000.0, 
@@ -101,5 +101,5 @@ public class StartWindow extends JFrame {
         setTitle("JList");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-    }
+    }*/
 }

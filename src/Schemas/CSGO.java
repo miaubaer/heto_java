@@ -1,9 +1,5 @@
 package Schemas;
 
-import java.util.Hashtable;
-
-import javax.net.ssl.SSLEngineResult.HandshakeStatus;
-
 public class CSGO extends Game {
     private final int ROUNDS = 30;
     private final String[] MAPS = {

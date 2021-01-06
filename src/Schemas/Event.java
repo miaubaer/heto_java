@@ -14,13 +14,14 @@ public class Event {
     private List<Game> gameList;
     private List<Spectator> audience;
     private List<Sponsor> sponsorList;
-    // private Inventory eventInventory;
+    private Inventory eventInventory;   //added for later
+    // private Schemas.Inventory eventInventory;
     // private double eventCost;
     // private double sponsorRevenue;
     // Scanner in= new Scanner(System.in);
     // Connection con;
 
-    public Event(String eventName, String eventLocation) throws ClassNotFoundException {
+    Event(String eventName, String eventLocation) throws ClassNotFoundException {
         this.eventName = eventName;
         this.eventLocation = eventLocation;
         this.prizepool = prizepool;
@@ -36,7 +37,7 @@ public class Event {
         con = ConnectionProvider.getConnection();
 
         //Das event der SQL-Datenbank hinzufügen.
-        query= "INSERT into Event (id,location,inventory) values (?,?,?)";
+        query= "INSERT into Schemas.Event (id,location,inventory) values (?,?,?)";
         try {
             pstmt= con.prepareStatement(query);
         } catch (SQLException ex) {
@@ -62,11 +63,11 @@ public class Event {
             {
                 String a= set.getString("eventID");
                 String b= set.getString("gameID");
-                if (a.equalsIgnoreCase(this.eventName) && b.equalsIgnoreCase("Dota"))
+                if (a.equalsIgnoreCase(this.eventName) && b.equalsIgnoreCase("Schemas.Dota"))
                 {
                     flag=true;
                 }
-                else if (a.equalsIgnoreCase(this.eventName) && b.equalsIgnoreCase("CSGO"))
+                else if (a.equalsIgnoreCase(this.eventName) && b.equalsIgnoreCase("Schemas.CSGO"))
                 {
                     flag=true;
                 }
@@ -77,34 +78,34 @@ public class Event {
 
     }
 
-    public String getName() {
-        return this.name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    // Getter & Setter (in one-line-format for a better overview)
 
-    public String getLocation() {
-        return this.location;
-    }
+    public String getEventName() { return eventName; }
+    public void setEventName(String eventName) { this.eventName = eventName; }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
+    public String getEventLocation() { return eventLocation; }
+    public void setEventLocation(String eventLocation) { this.eventLocation = eventLocation; }
 
-    public double getPrizepool() {
-        return this.prizepool;
-    }
+    public double getPrizepool() { return this.prizepool; }
+    public void setPrizepool(double prizepool) { this.prizepool = prizepool; }
 
-    public void setPrizepool(double prizepool) {
-        this.prizepool = prizepool;
-    }
+    public Team[] getPlaces() { return this.places; }
+    public void setPlaces(Team[] places) { this.places = places; }
 
-    public double[] getRatio() {
-        return this.ratio;
-    }
+    public List<Team> getTeamList() { return teamList; }
+    public void setTeamList(List<Team> teamList) { this.teamList = teamList; }
 
+    public List<Game> getGameList() { return gameList; }
+    public void setGameList(List<Game> gameList) { this.gameList = gameList; }
+
+    public List<Spectator> getAudience() { return audience; }
+    public void setAudience(List<Spectator> audience) { this.audience = audience; }
+
+    public List<Sponsor> getSponsorList() { return sponsorList; }
+    public void setSponsorList(List<Sponsor> sponsorList) { this.sponsorList = sponsorList; }
+
+    public double[] getRatio() { return this.ratio; }
     public void setRatio(double[] ratio) {
         double[] res = new double[team.size()];
         for (int i = 0; i < team.size(); i++) {
@@ -114,32 +115,13 @@ public class Event {
                 res[i] = 0;
             }
         }
-
         this.ratio = res;
-    }
+    }       //Custom made from Hermann
 
-    public Team[] getPlaces() {
-        return this.places;
-    }
+    public Scanner getIn() { return in; }
+    public void setIn(Scanner in) { this.in = in; }
 
-    public void setPlaces(Team[] places) {
-        this.places = places;
-    }
-
-    public List<Team> getTeam() {
-        return this.team;
-    }
-
-    public void setTeam(List<Team> team) {
-        this.team = team;
-    }
-
-    public List<Game> getGame() {
-        return this.game;
-    }
-
-    public void setGame(List<Game> game) {
-        this.game = game;
-    }
+    public Connection getCon() { return con; }
+    public void setCon(Connection con) { this.con = con; }
 
 }

@@ -9,7 +9,7 @@ public class Team {
     private String teamName;
     // private int totalWins;
     // private int ranking;
-    private String[] playerList; // marker evtl Game List
+    private String[] playerList; // marker evtl Schemas.Game List
 
     // Konstruktor
     public Team(String teamName, String[] playerList) {

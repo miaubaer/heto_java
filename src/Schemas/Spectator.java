@@ -18,7 +18,7 @@ public class Spectator {
     }
 
     // Methods
-    // Method: Display Spectator Info
+    // Method: Display Schemas.Spectator Info
 
     // Getter & Setter
 

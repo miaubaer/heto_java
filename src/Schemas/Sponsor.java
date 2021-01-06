@@ -14,7 +14,7 @@ public class Sponsor {
     }
 
     // Methods
-    // Method: Display Spectator Info
+    // Method: Display Schemas.Spectator Info
 
     // Getter & Setter
 
