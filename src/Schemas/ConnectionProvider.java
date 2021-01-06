@@ -13,7 +13,9 @@ public class ConnectionProvider {
         {
             if(con==null)
             {
-                con=DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=ESports;user=sa;password=us3raccount;");
+                con=DriverManager.getConnection("jdbc:sqlserver://51.195.103.189:1433;user=sa;password=sqlIUBH2021;");
+                // jdbc:sqlserver://51.195.103.189:1433;user=sa;password=sqlIUBH2021;
+                // jdbc:sqlserver://51.195.103.189:1433;user=sa;password=sqlIUBH2021;
                 System.out.println("Verbindung wurde aufgebaut");
             }
 

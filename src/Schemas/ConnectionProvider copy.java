@@ -2,7 +2,7 @@ package esportsmanagement;
 
 import java.sql.*;
 
-public class ConnectionProvid {
+public class ConnectionProvider {
     private static Connection con;
 
     // tobimarker
@@ -15,7 +15,7 @@ public class ConnectionProvid {
         {
             if(con==null)
             {
-                con=DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=ESports;user=sa;password=us3raccount;");
+                con=DriverManager.getConnection("jdbc:sqlserver://localhost:1433;user=sa;password=us3raccount;");
                 System.out.println("Verbindung wurde aufgebaut");
             }
 
