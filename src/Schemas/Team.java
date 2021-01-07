@@ -1,6 +1,7 @@
+package Schemas;
+
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class Team {
 
@@ -14,7 +15,7 @@ public class Team {
         this.teamName = teamName;
         this.playerList = playerList;
     }
-    
+
     public String getTeamName() {
         return teamName;
     }

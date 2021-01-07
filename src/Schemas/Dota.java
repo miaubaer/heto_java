@@ -1,3 +1,5 @@
+package Schemas;
+
 public class Dota extends Game implements PrizePoolInterface {
     // check: https://dota2.gamepedia.com/Buildings#Outposts
 

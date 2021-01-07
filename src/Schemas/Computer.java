@@ -1,6 +1,9 @@
+package Schemas;
+
 import java.util.Date;
 
-public class Computer extends Inventory {
+public class Computer /*extends Inventory */{
+    /*
     private String cpu;
     private String gpu;
     private int ubsPorts;
@@ -24,5 +27,5 @@ public class Computer extends Inventory {
     public int getUbsPorts() {
         return this.ubsPorts;
     }
-    
+    */
 }

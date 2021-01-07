@@ -1,3 +1,5 @@
+package Schemas;
+
 public interface PrizePoolInterface {
 
     public void setGamePrizePool();

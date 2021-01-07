@@ -1,3 +1,5 @@
+package Schemas;
+
 import java.util.Date;
 
 public class Headphones extends Inventory {
