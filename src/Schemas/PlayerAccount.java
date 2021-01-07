@@ -1,5 +1,3 @@
-package Schemas;
-
 public class PlayerAccount {
 
     private String nick;

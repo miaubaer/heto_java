@@ -1,5 +1,3 @@
-package Schemas;
-
 import java.util.Random;
 
 
@@ -18,7 +16,7 @@ public class Spectator {
     }
 
     // Methods
-    // Method: Display Schemas.Spectator Info
+    // Method: Display Spectator Info
 
     // Getter & Setter
 

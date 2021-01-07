@@ -1,5 +1,3 @@
-package Schemas;
-
 public class CSGO extends Game {
     private final int ROUNDS = 30;
     private final String[] MAPS = {

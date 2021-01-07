@@ -1,5 +1,3 @@
-package Schemas;
-
 public class Sponsor {
 
     private String sponsorName;
@@ -14,7 +12,7 @@ public class Sponsor {
     }
 
     // Methods
-    // Method: Display Schemas.Spectator Info
+    // Method: Display Spectator Info
 
     // Getter & Setter
 

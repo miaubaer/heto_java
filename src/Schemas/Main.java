@@ -1,4 +1,4 @@
-import Schemas.Event;
+package Schemas;
 
 import java.io.*;
 import java.awt.Color;
@@ -58,10 +58,10 @@ public class Main {
 
         Main a= new Main();
         //a.addGames();             //Uncomment this when running the program for the first time.
-        JFrame eSports= new JFrame("Esports Schemas.Event Info");
+        JFrame eSports= new JFrame("Esports Event Info");
         int input,input2, headphoneCount, pcCount, mouseCount, keyboardCount, monitorCount, frontRowSeats, backRowSeats, VIPRooms, foodCapacity;
         String eventName, eventLocation, query;
-       //markerUseLater Schemas.Inventory eventInventory;
+       //markerUseLater Inventory eventInventory;
         boolean flag=false;
         boolean exitFlag=false;
         Event newEvent;
@@ -107,7 +107,7 @@ public class Main {
                 eventLocation= in.nextLine();
 
                 newEvent= new Event(eventName, eventLocation);
-                System.out.println("Schemas.Event successfully created!");
+                System.out.println("Event successfully created!");
                 System.out.println("Welcome to the event management menu!");
 
 
@@ -137,7 +137,7 @@ public class Main {
                     else if (input==5)
                     {
                         System.out.println("Confirming event details and adding to database.");
-                        System.out.println("Schemas.Event successfully added, exiting menu");
+                        System.out.println("Event successfully added, exiting menu");
                         exitFlag=true;
                         setGUI(eSports,newEvent);    //Displaying event details in the GUI
 

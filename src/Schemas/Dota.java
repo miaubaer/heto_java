@@ -1,5 +1,3 @@
-package Schemas;
-
 public class Dota extends Game implements PrizePoolInterface {
     // check: https://dota2.gamepedia.com/Buildings#Outposts
 
@@ -11,7 +9,7 @@ public class Dota extends Game implements PrizePoolInterface {
     //Add-in BEGIN
     @Override
     public void displayGameInfo() {
-        System.out.println("DotA 2 (Defence of the Ancients) ist ein Computerspiel aus dem Genre der MOBA. Bei dem Spiel treten zwei Teams mit je fünf Spielern gegeneinander an. Wobei jedes Schemas.Team das eigene Ancient verteidigen muss um zu gewinnen. Ein Schemas.Team übernimmt die Rolle der Dire , während das andere Schemas.Team die Radiant sind.");
+        System.out.println("DotA 2 (Defence of the Ancients) ist ein Computerspiel aus dem Genre der MOBA. Bei dem Spiel treten zwei Teams mit je fünf Spielern gegeneinander an. Wobei jedes Team das eigene Ancient verteidigen muss um zu gewinnen. Ein Team übernimmt die Rolle der Dire , während das andere Team die Radiant sind.");
     }
 
     @Override

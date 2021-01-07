@@ -1,5 +1,3 @@
-package Schemas;
-
 import java.sql.*;
 import java.util.*;
 import java.util.logging.*;
@@ -15,13 +13,13 @@ public class Event {
     private List<Spectator> audience;
     private List<Sponsor> sponsorList;
     private Inventory eventInventory;   //added for later
-    // private Schemas.Inventory eventInventory;
+    // private Inventory eventInventory;
     // private double eventCost;
     // private double sponsorRevenue;
     // Scanner in= new Scanner(System.in);
     // Connection con;
 
-    Event(String eventName, String eventLocation) throws ClassNotFoundException {
+    public Event(String eventName, String eventLocation) throws ClassNotFoundException {
         this.eventName = eventName;
         this.eventLocation = eventLocation;
         this.prizepool = prizepool;
@@ -37,7 +35,7 @@ public class Event {
         con = ConnectionProvider.getConnection();
 
         //Das event der SQL-Datenbank hinzufügen.
-        query= "INSERT into Schemas.Event (id,location,inventory) values (?,?,?)";
+        query= "INSERT into Event (id,location,inventory) values (?,?,?)";
         try {
             pstmt= con.prepareStatement(query);
         } catch (SQLException ex) {
@@ -63,11 +61,11 @@ public class Event {
             {
                 String a= set.getString("eventID");
                 String b= set.getString("gameID");
-                if (a.equalsIgnoreCase(this.eventName) && b.equalsIgnoreCase("Schemas.Dota"))
+                if (a.equalsIgnoreCase(this.eventName) && b.equalsIgnoreCase("Dota"))
                 {
                     flag=true;
                 }
-                else if (a.equalsIgnoreCase(this.eventName) && b.equalsIgnoreCase("Schemas.CSGO"))
+                else if (a.equalsIgnoreCase(this.eventName) && b.equalsIgnoreCase("CSGO"))
                 {
                     flag=true;
                 }

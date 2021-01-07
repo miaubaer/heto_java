@@ -1,3 +1,5 @@
+package Schemas;
+
 import java.sql.*;
 
 public class ConnectionProvider {
@@ -8,7 +10,7 @@ public class ConnectionProvider {
     public static Connection getConnection() throws ClassNotFoundException
     {
 
-        Class.forName("com.microsot.sqlserver.jdbc.SQLServerDriver");
+        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         try
         {
             if(con==null)

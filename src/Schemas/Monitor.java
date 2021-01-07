@@ -1,5 +1,3 @@
-package Schemas;
-
 import java.util.Date;
 
 public class Monitor extends Inventory {
