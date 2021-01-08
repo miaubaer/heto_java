@@ -1,3 +1,5 @@
+package Schemas;
+
 import java.sql.*;
 
 public class ConnectionProvider {
