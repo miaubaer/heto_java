@@ -5,7 +5,7 @@ import java.util.*;
 import java.util.logging.*;
 
 public class Event {
-    private String eventName;
+    private String eventName; 
     private String eventLocation;
     private double prizepool;
     private double[] ratio;
@@ -18,68 +18,38 @@ public class Event {
     private double eventRevenue;
     private double eventCost;
     private double sponsorRevenue;
-    Scanner in= new Scanner(System.in);
-    Connection con;
+    Scanner in = new Scanner(System.in);
+    // Connection con;
 
-    public Event(String eventName, String eventLocation) throws ClassNotFoundException {
+    public Event(String eventName, String eventLocation, double prizepool, double[] ratio, List<Team> teams) {
         this.eventName = eventName;
         this.eventLocation = eventLocation;
         this.prizepool = prizepool;
-        this.ratio = ratio;
-        this.places = places;
         // Array Listen innerhalb des Konstruktors mussten wie folgt verändert werden. Quelle: https://stackoverflow.com/questions/22736092/declaring-arraylist-in-java-constructor
+        
         teamList = new ArrayList<Team>();
+        // set ratio muss ausgeführt werden, wenn eine Liste zur Variable teamList bereits zugewiesen ist.
+        this.setRatio(ratio);
+
         gameList = new ArrayList<Game>();
         audience = new ArrayList<Spectator>();
         sponsorList = new ArrayList<Sponsor>();
-        eventRevenue=0;
+        eventRevenue = 0;
         /* Sicherung
         this.teamList = teamList; this.gameList = gameList; this.audience = audience; this.sponsorList = sponsorList;*/
-        con = ConnectionProvider.getConnection();
+        // con = ConnectionProvider.getConnection();
 
         String query;
-        PreparedStatement pstmt= null;
 
-        //Das Event der SQL-Datenbank hinzufügen.
-        query= "INSERT into Event (id,location,inventory) values (?,?,?)";
-        try {
-            pstmt= con.prepareStatement(query);
-        } catch (SQLException ex) {
-            Logger.getLogger(Event.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            pstmt.setString(1, this.eventName);
-            pstmt.setString(2, this.eventLocation);
-            /*MARKER14 Inventory            pstmt.setString(3, String.valueOf(this.eventInventory.getID()));*/
-            pstmt.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(Event.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // !!! WICHTIG !!!
 
-        boolean flag=false;
+        // Ich schiebe der DB bezüglichen Methoden in die gertennte Methode.
+        // Es ist nicht nötig im Constructor, jedoch wird als eine Methode der Instanz gebraucht.
+        // Wenn es so ist, brauchen wir keinen Attribut für Connection newschreiben. Die Methoden können es als Argument nehmen.
 
-        //event und games der SQL-Datenbank hinzufügen.
-        query= "select * from EventGames where eventID="+ "'" + this.eventName + "'";
-        try {
-            pstmt= con.prepareStatement(query);
-            ResultSet set= pstmt.executeQuery();
-            if (set.next())
-            {
-                String a= set.getString("eventID");
-                String b= set.getString("gameID");
-                if (a.equalsIgnoreCase(this.eventName) && b.equalsIgnoreCase("Dota"))
-                {
-                    flag=true;
-                }
-                else if (a.equalsIgnoreCase(this.eventName) && b.equalsIgnoreCase("CSGO"))
-                {
-                    flag=true;
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Event.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        // Eigentlich hier können wir eine Schnittstelle schreiben, die Methoden für die Datenleitung erhalten wird.
+        
+        // --- --- --- ---
     }
 
 
@@ -96,11 +66,11 @@ public class Event {
     public void setPrizepool(double prizepool) { this.prizepool = prizepool; }
 
     // von Hermann
-    public Team[] getPlaces() { return this.places; }
-    public void setPlaces(Team[] places) { this.places = places; }
+    // public Team[] getPlaces() { return this.places; }
+    // public void setPlaces(Team[] places) { this.places = places; }
 
-    public List<Team> getTeamList() { return teamList; }
-    public void setTeamList(List<Team> teamList) { this.teamList = teamList; }
+    // public List<Team> getTeamList() { return teamList; }
+    // public void setTeamList(List<Team> teamList) { this.teamList = teamList; }
 
     public List<Game> getGameList() { return gameList; }
     public void setGameList(List<Game> gameList) { this.gameList = gameList; }
@@ -124,11 +94,15 @@ public class Event {
     public double getSponsorRevenue() { return sponsorRevenue; }
     public void setSponsorRevenue(double sponsorRevenue) { this.sponsorRevenue = sponsorRevenue; }
 
-/* AUSGEBLENDET, weil Variable team noch nicht deklariert
-   public double[] getRatio() { return this.ratio; }
+    public double[] getRatio() { return this.ratio; }
+
+    // Variable in meinem Code war gleich der Variable teamList in deinem Code. (Hermann)
     public void setRatio(double[] ratio) {
-        double[] res = new double[team.size()];
-        for (int i = 0; i < team.size(); i++) {
+
+        // HINZUFÜGEN: Prüfung ob angegebene Ratio vom Prizepool gleich 1 ist. Fallst nicht, Exception ausspucken. (Hermann)
+
+        double[] res = new double[teamList.size()];
+        for (int i = 0; i < teamList.size(); i++) {
             if (ratio.length < i) {
                 res[i] = ratio[i];
             } else {
@@ -137,12 +111,59 @@ public class Event {
         }
         this.ratio = res;
     }       //Custom made from Hermann
- */
+
 
     public Scanner getIn() { return in; }
     public void setIn(Scanner in) { this.in = in; }
 
-    public Connection getCon() { return con; }
-    public void setCon(Connection con) { this.con = con; }
+    // public Connection getCon() { return con; }
+    // public void setCon(Connection con) { this.con = con; }
 
+    public void insert(Connection con) {
+        //Das Event der SQL-Datenbank hinzufügen.
+        String query = "INSERT into Event (id,location,inventory) values (?,?,?)";
+        PreparedStatement pstmt= null;
+
+        try {
+            pstmt= con.prepareStatement(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Event.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            pstmt.setString(1, this.eventName);
+            pstmt.setString(2, this.eventLocation);
+            /*MARKER14 Inventory            pstmt.setString(3, String.valueOf(this.eventInventory.getID()));*/
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Event.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void select(Connection con) {
+        //event und games der SQL-Datenbank hinzufügen.
+        String query= "select * from EventGames where eventID="+ "'" + this.eventName + "'";
+        PreparedStatement pstmt= null;
+
+        // Diesen Teil des Codes sollen wir besprechen (Hermann)
+        boolean flag = false; 
+        try {
+            pstmt= con.prepareStatement(query);
+            ResultSet set= pstmt.executeQuery();
+            if (set.next())
+            {
+                String a= set.getString("eventID");
+                String b= set.getString("gameID");
+                if (a.equalsIgnoreCase(this.eventName) && b.equalsIgnoreCase("Dota"))
+                {
+                    flag=true;  
+                }
+                else if (a.equalsIgnoreCase(this.eventName) && b.equalsIgnoreCase("CSGO"))
+                {
+                    flag=true;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Event.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

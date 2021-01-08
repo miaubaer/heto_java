@@ -57,6 +57,11 @@ public class Main {
 
     // Abfragen
     public static void main(String[] args) throws ClassNotFoundException {
+        //  Was du getestet hast, habe ich in die Methode unten "tobisTest()" verschoben. (Hermann)
+
+    }
+
+    private void tobisTest() throws ClassNotFoundException {
 
         Main a= new Main();
         //a.addGames();             //Uncomment this when running the program for the first time.
@@ -108,7 +113,7 @@ public class Main {
                 System.out.println("Enter the location of the event: ");        //Enter details of the event inventory.
                 eventLocation= in.nextLine();
 
-                newEvent= new Event(eventName, eventLocation);
+                newEvent= new Event(eventName, eventLocation, 0.0, null, null);
                 System.out.println("Event successfully created!");
                 System.out.println("Welcome to the event management menu!");
 
