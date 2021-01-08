@@ -1,7 +1,5 @@
 package Schemas;
 
-import java.util.Objects;
-
 public class Dota extends Game implements PrizePoolInterface {
     // check: https://dota2.gamepedia.com/Buildings#Outposts
 

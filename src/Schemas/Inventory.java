@@ -1,8 +1,14 @@
+// Hermann
+
 package Schemas;
 
 import java.util.Date;
-import java.sql.*;
 import java.util.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Random;
 
 
 public class Inventory {
@@ -12,8 +18,23 @@ public class Inventory {
     protected String brand;
     protected String model;
 
-    private boolean available; 
+    //Nachfolgende von Tobi (Bitte NICHT löschen)
+    private int ID;
+    private int headPhoneCount;
+    private int computersCount;
+    private int monitorsCount;
+    private int mouseCount;
+    private int keyboardCount;
+    private int foodCapacity;
+    private int frontRowSeats;
+    private int backRowSeats;
+    private int VIPRooms;
+    private double inventoryCost=0;
+    Random rand= new Random();
+    Connection con;
+    private boolean available;
 
+    // Nachfolgende von Hermann
     public Inventory(int id, Date bought, int price, String brand, String model) {
         this.id = id;
         this.bought = bought;

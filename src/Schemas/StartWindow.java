@@ -1,4 +1,4 @@
-package Windows;
+package Schemas;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -15,9 +15,9 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
-import Schemas.*;
+//import Schemas.*;
 
-public class StartWindow extends JFrame {
+public class StartWindow extends JFrame {/*
     private JPanel startPanel = new JPanel();
 
     // Built-in lists of team for tests
@@ -74,6 +74,37 @@ public class StartWindow extends JFrame {
     }
 
     private void initUI() {
+<<<<<<< HEAD:src/Windows/StartWindow.java
         
     }
+=======
+
+        var ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        var fonts = ge.getAvailableFontFamilyNames();
+        var list = new JList(fonts);
+
+        list.addListSelectionListener(e -> {
+
+            if (!e.getValueIsAdjusting()) {
+
+                var name = (String) list.getSelectedValue();
+                var font = new Font(name, Font.PLAIN, 12);
+
+                label.setFont(font);
+            }
+        });
+
+        spane = new JScrollPane();
+        spane.getViewport().add(list);
+
+        label = new JLabel("Aguirre, der Zorn Gottes");
+        label.setFont(new Font("Serif", Font.PLAIN, 12));
+
+        createLayout(spane, label);
+
+        setTitle("JList");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+    }*/
+>>>>>>> 4ef8b13e6b36f8b9ae78350fac6e5f497308d234:src/Schemas/StartWindow.java
 }
