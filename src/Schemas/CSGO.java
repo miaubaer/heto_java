@@ -25,8 +25,8 @@ public class CSGO extends Game {
         this.currentRound = 1;
         this.ct = ct;
         this.t = t;
-        this.scores[0] = 0;
-        this.scores[1] = 0;
+        this.scores[0] = 0; // ct
+        this.scores[1] = 0; // t
     }
 
     @Override
@@ -39,7 +39,7 @@ public class CSGO extends Game {
         int ind;
         if (winner.toLowerCase() == "ct") {
             ind = 0;
-        } else if (winner.toLowerCase() == "ct") {
+        } else if (winner.toLowerCase() == "t") {
             ind = 1;
         } else { return; }
 

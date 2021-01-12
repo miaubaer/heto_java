@@ -1,30 +1,25 @@
 package UI;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
+import java.awt.BorderLayout;
 
-import javax.swing.GroupLayout;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.GraphicsEnvironment;
 
 import Schemas.*;
 
 //import Schemas.*;
 
-public class StartWindow extends JFrame {
+public class StartWindow extends JFrame implements IUserInterface {
     /**
      *
      */
     private static final long serialVersionUID = 1L;
-    public JFrame frame = new JFrame("Verwaltung");
+    private int WIDTH = 1280;
+    private int HEIGHT = 720;
+    
+    private JFrame frame;
     // Built-in lists of team for tests
     Team[] tl1 = {
         new Team("OG", new String[]{"NBK", "Aleksib", "valde", "ISSAA", "mantuu"}),
@@ -75,9 +70,37 @@ public class StartWindow extends JFrame {
     };
 
     public StartWindow() {
-        this.frame.setSize(1280, 720);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Window Settings
+        this.frame = design("Verwaltung", WIDTH, HEIGHT);
+        
+        frame.setLayout(new BorderLayout());
 
+		JList<String> list = new JList(getNameListOfEvents());
+        list.setVisible(true);
+        
+		JScrollPane p = new JScrollPane(list);
+		
+        frame.add(p, BorderLayout.LINE_START);
+        
+		frame.setVisible(true);
+    }
+
+    @Override
+    public void show() {
         frame.setVisible(true);
+    }
+
+    @Override
+    public void hide() {
+        frame.setVisible(false);
+    }
+
+    private String[] getNameListOfEvents() {
+        String[] res = new String[events.length];
+
+        for (int i = 0; i < events.length; i++) {
+            res[i] = events[i].getEventName();
+        }
+        return res;
     }
 }
