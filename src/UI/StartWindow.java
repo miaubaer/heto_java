@@ -37,6 +37,8 @@ public class StartWindow extends JFrame implements IUserInterface {
 
         c.add(Box.createHorizontalStrut(30));
 
+        System.out.println("Hello From StartWindow");
+
         this.frame.add(c);
         // this.frame.setVisible(true);
     }

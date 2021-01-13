@@ -3,13 +3,10 @@ package Schemas;
 import java.sql.*;
 
 public class ConnectionProvider {
-    private static Connection con;
-
     // tobimarker
 
-    public static Connection getConnection() throws ClassNotFoundException
+    public static Connection getConnection(Connection con) throws ClassNotFoundException
     {
-
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         try
         {
