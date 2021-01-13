@@ -16,13 +16,6 @@ public class StartWindow extends JFrame implements IUserInterface {
     private ListOfEvents list;
     private DisplayEventDetails display;
 
-
-
-
-
-
-
-
     public static Connection getConnection(Connection con) throws ClassNotFoundException
     {
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
