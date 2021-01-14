@@ -21,34 +21,44 @@ public class DisplayEventDetails extends JPanel {
         name = new JTextField(16);
         location = new JTextField(16);
 
-        addRowToGrid(layout, "Name: ", name, 0);
-        addRowToGrid(layout, "Ort: ", location, 1);
+        addLabelToGrid(layout, new JLabel("Names: "), 0, 0, 1, 1);
+        addLabelToGrid(layout, new JLabel("Ort: "), 0, 1, 1, 1);
+
+        addTextFieldToGrid(layout, name, 1, 0, 5, 1);
+        addTextFieldToGrid(layout, location, 1, 1, 5, 1);
     }
 
-    private void addRowToGrid(GridBagLayout gb, String name, JTextField jtf, int y) {
-        JLabel l = new JLabel(name);
+    // The method adds a JLAbel to Layout.
+    // Parameters: (layout, JLabel, position x, position y, size of cell dimension x, size if cell dimension y)
+    private void addLabelToGrid(GridBagLayout layout, JLabel l, int x, int y, int sx, int sy) {
+        GridBagConstraints cons = new GridBagConstraints();
 
-        GridBagConstraints gbcLabel = new GridBagConstraints();
-        GridBagConstraints gbcTextField = new GridBagConstraints();
-        
-        gbcLabel.insets = new Insets(5, 5, 5, 5);
-        gbcTextField.insets = new Insets(5, 5, 5, 5);
+        cons.insets = new Insets(5, 5, 5, 5);
 
-        gbcLabel.gridx = 0;
-        gbcTextField.gridx = 1;
-        gbcLabel.gridy = y;
-        gbcTextField.gridy = y;
-        gbcLabel.gridwidth = 1;
-        gbcLabel.gridheight = 1;
-        gbcTextField.gridwidth = 3;
-        gbcTextField.gridheight = 1;
-        gbcLabel.fill = GridBagConstraints.BOTH;
-        gbcTextField.fill = GridBagConstraints.BOTH;
+        cons.gridx = x;
+        cons.gridy = y;
+        cons.gridwidth = sx;
+        cons.gridheight = sy;
+        cons.fill = GridBagConstraints.BOTH;
 
-        gb.setConstraints(l, gbcLabel);
-        gb.setConstraints(jtf, gbcTextField);
-
+        layout.setConstraints(l, cons);
         add(l);
-        add(jtf);
+    }
+
+    // The method adds a JTextField to Layout.
+    // Parameters: (layout, TextFiel, position x, position y, size of cell dimension x, size if cell dimension y)
+    private void addTextFieldToGrid(GridBagLayout layout, JTextField tf, int x, int y, int sx, int sy) {
+        GridBagConstraints cons = new GridBagConstraints();
+
+        cons.insets = new Insets(5, 5, 5, 5);
+
+        cons.gridx = x;
+        cons.gridy = y;
+        cons.gridwidth = sx;
+        cons.gridheight = sy;
+        cons.fill = GridBagConstraints.BOTH;
+
+        layout.setConstraints(tf, cons);
+        add(tf);
     }
 }
