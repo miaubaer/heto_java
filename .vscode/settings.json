@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/home/uhetz/Projects/heto_java/**/*.jar"
+    ]
+}

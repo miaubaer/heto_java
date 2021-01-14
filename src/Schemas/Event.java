@@ -12,34 +12,27 @@ public class Event {
     private Team[] places;
     private List<Team> teamList;
     private List<Game> gameList;
-    private List<Spectator> audience;
-    private List<Sponsor> sponsorList;
-    private Inventory eventInventory;   //added for later
-    private double eventRevenue;
-    private double eventCost;
-    private double sponsorRevenue;
-    Scanner in = new Scanner(System.in);
-    // Connection con;
+    
+    // private List<Spectator> audience;
+    // private List<Sponsor> sponsorList;
+    // private Inventory eventInventory;   //added for later
+    // private double eventRevenue;
+    // private double eventCost;
+    // private double sponsorRevenue;
 
     public Event(String eventName, String eventLocation, double prizepool, double[] ratio, List<Team> teams) {
         this.eventName = eventName;
         this.eventLocation = eventLocation;
         this.prizepool = prizepool;
-        // Array Listen innerhalb des Konstruktors mussten wie folgt verändert werden. Quelle: https://stackoverflow.com/questions/22736092/declaring-arraylist-in-java-constructor
         
         teamList = new ArrayList<Team>();
         // set ratio muss ausgeführt werden, wenn eine Liste zur Variable teamList bereits zugewiesen ist.
         this.setRatio(ratio);
 
         gameList = new ArrayList<Game>();
-        audience = new ArrayList<Spectator>();
-        sponsorList = new ArrayList<Sponsor>();
-        eventRevenue = 0;
-        /* Sicherung
-        this.teamList = teamList; this.gameList = gameList; this.audience = audience; this.sponsorList = sponsorList;*/
-        // con = ConnectionProvider.getConnection();
-
-        String query;
+        // audience = new ArrayList<Spectator>();
+        // sponsorList = new ArrayList<Sponsor>();
+        // eventRevenue = 0;
 
         // !!! WICHTIG !!!
 
@@ -65,34 +58,9 @@ public class Event {
     public double getPrizepool() { return this.prizepool; }
     public void setPrizepool(double prizepool) { this.prizepool = prizepool; }
 
-    // von Hermann
-    // public Team[] getPlaces() { return this.places; }
-    // public void setPlaces(Team[] places) { this.places = places; }
-
-    // public List<Team> getTeamList() { return teamList; }
-    // public void setTeamList(List<Team> teamList) { this.teamList = teamList; }
 
     public List<Game> getGameList() { return gameList; }
     public void setGameList(List<Game> gameList) { this.gameList = gameList; }
-
-    public List<Spectator> getAudience() { return audience; }
-    public void setAudience(List<Spectator> audience) { this.audience = audience; }
-
-    public Inventory getEventInventory() { return eventInventory; }
-    public void setEventInventory(Inventory eventInventory) { this.eventInventory = eventInventory; }
-
-    public double getEventRevenue() { return eventRevenue; }
-    public void setEventRevenue(double eventRevenue) { this.eventRevenue = eventRevenue; }
-
-    public double getEventCost() { return eventCost; }
-    public void setEventCost(double eventCost) { this.eventCost = eventCost; }
-
-    public List<Sponsor> getSponsorList() { return sponsorList; }
-    public void setSponsorList(List<Sponsor> sponsorList) { this.sponsorList = sponsorList; }
-
-    //für später
-    public double getSponsorRevenue() { return sponsorRevenue; }
-    public void setSponsorRevenue(double sponsorRevenue) { this.sponsorRevenue = sponsorRevenue; }
 
     public double[] getRatio() { return this.ratio; }
 
@@ -110,14 +78,7 @@ public class Event {
             }
         }
         this.ratio = res;
-    }       //Custom made from Hermann
-
-
-    public Scanner getIn() { return in; }
-    public void setIn(Scanner in) { this.in = in; }
-
-    // public Connection getCon() { return con; }
-    // public void setCon(Connection con) { this.con = con; }
+    }
 
     public void insert(Connection con) {
         //Das Event der SQL-Datenbank hinzufügen.
