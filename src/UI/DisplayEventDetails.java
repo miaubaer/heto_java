@@ -12,21 +12,39 @@ public class DisplayEventDetails extends JPanel {
     private static final long serialVersionUID = 1L;
 
     private JTextField name;
-    private JTextField location;
+    private JTextField region;
 
     public DisplayEventDetails() {
         GridBagLayout layout = new GridBagLayout();
         setLayout(layout);
 
-        name = new JTextField(16);
-        location = new JTextField(16);
+        name = new JTextField(16);;
+        region = new JTextField(16);
+
+        name.setEditable(false);
+        region.setEditable(false);
 
         addLabelToGrid(layout, new JLabel("Names: "), 0, 0, 1, 1);
         addLabelToGrid(layout, new JLabel("Ort: "), 0, 1, 1, 1);
 
         addTextFieldToGrid(layout, name, 1, 0, 5, 1);
-        addTextFieldToGrid(layout, location, 1, 1, 5, 1);
+        addTextFieldToGrid(layout, region, 1, 1, 5, 1);
     }
+
+    public String getName() {
+        return this.name.getText();
+    }
+    public void setName(String name) {
+        this.name.setText(name);
+    }
+
+    public String getRegion() {
+        return this.region.getText();
+    }
+    public void setRegion(String region) {
+        this.region.setText(region);
+    }
+
 
     // The method adds a JLAbel to Layout.
     // Parameters: (layout, JLabel, position x, position y, size of cell dimension x, size if cell dimension y)
