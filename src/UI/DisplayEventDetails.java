@@ -11,24 +11,32 @@ public class DisplayEventDetails extends JPanel {
      */
     private static final long serialVersionUID = 1L;
 
-    private JTextField name;
-    private JTextField region;
+    private JTextField name = new JTextField(16);
+    private JTextField region = new JTextField(16);
+    private JTextField prizePool = new JTextField(16);
+    private JTextField ratio = new JTextField(16);
+    // taken places
+    // team list
+    // game list | low priority
 
     public DisplayEventDetails() {
         GridBagLayout layout = new GridBagLayout();
         setLayout(layout);
 
-        name = new JTextField(16);;
-        region = new JTextField(16);
-
-        name.setEditable(false);
-        region.setEditable(false);
+        this.name.setEditable(false);
+        this.region.setEditable(false);
+        this.prizePool.setEditable(false);
+        this.ratio.setEditable(false);
 
         addLabelToGrid(layout, new JLabel("Names: "), 0, 0, 1, 1);
         addLabelToGrid(layout, new JLabel("Ort: "), 0, 1, 1, 1);
+        addLabelToGrid(layout, new JLabel("Belohnung: "), 0, 2, 1, 1);
+        addLabelToGrid(layout, new JLabel("Anteile: "), 0, 3, 1, 1);
 
-        addTextFieldToGrid(layout, name, 1, 0, 5, 1);
-        addTextFieldToGrid(layout, region, 1, 1, 5, 1);
+        addTextFieldToGrid(layout, this.name, 1, 0, 5, 1);
+        addTextFieldToGrid(layout, this.region, 1, 1, 5, 1);
+        addTextFieldToGrid(layout, this.prizePool, 1, 2, 5, 1);
+        addTextFieldToGrid(layout, this.ratio, 1, 3, 5, 1);
     }
 
     public String getName() {
@@ -43,6 +51,20 @@ public class DisplayEventDetails extends JPanel {
     }
     public void setRegion(String region) {
         this.region.setText(region);
+    }
+
+    public String getRatio() {
+        return this.ratio.getText();
+    }
+    public void setRatio(String ratio) {
+        this.ratio.setText(ratio);
+    }
+
+    public String getPrizePool() {
+        return this.prizePool.getText();
+    }
+    public void setPrizePool(String prizePool) {
+        this.prizePool.setText(prizePool);
     }
 
 

@@ -73,6 +73,8 @@ public class ListOfEvents extends JPanel implements ListSelectionListener {
     private void displayInformation(GameEvent event) {
         display.setName(event.getGameEventName());
         display.setRegion(event.getGameEventLocation());
+        display.setPrizePool(String.valueOf(event.getPrizepool()));
+        display.setRatio(event.getRatio());
     }
 
     private GameEvent findSelectedGameEvent(GameEvent[] array, String name) {

@@ -45,9 +45,9 @@ public class GameEvent {
     public String getRatio() {
         String res = "";
         for (double e : this.ratio) {
-            res += e;
+            res = ", " + res + String.valueOf(e);
         }
-        return res; 
+        return "res"; 
     }
 
     // Variable in meinem Code war gleich der Variable teamList in deinem Code. (Hermann)
