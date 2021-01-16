@@ -4,8 +4,8 @@ import javax.swing.JFrame;
 
 public interface IUserInterface {
     public void show();
-
     public void hide();
+    public void getDataFromDatabase();
 
     public default JFrame design(String title, int w, int h) {
         JFrame f = new JFrame(title);

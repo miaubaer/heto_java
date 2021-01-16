@@ -15,12 +15,6 @@ public class Dota extends Game {
     }
     //Add-in END
 
-    private void setPrizepool(Object averageRevenue) {
-    }
-
-    private Object getAverageRevenue() {
-        return null;
-    }
 
 
 

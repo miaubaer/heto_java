@@ -1,18 +1,7 @@
 package Schemas;
 
 public class CSGO extends Game {
-    private final int ROUNDS = 30;
-    private final String[] MAPS = {
-        "Inferno",
-        "Train",
-        "Mirage",
-        "Nuke",
-        "Overpass",
-        "Dust II",
-        "Vertigo"
-    };
 
-    private String chosenMap;
     private int currentRound;
     private Team ct;
     private Team t;
@@ -21,7 +10,6 @@ public class CSGO extends Game {
     private Team winner; 
 
     public CSGO(String map, Team ct, Team t) {
-        this.chosenMap = map;
         this.currentRound = 1;
         this.ct = ct;
         this.t = t;
@@ -31,7 +19,6 @@ public class CSGO extends Game {
 
     @Override
     void displayGameInfo() {
-        // TODO Auto-generated method stub
 
     }
 
