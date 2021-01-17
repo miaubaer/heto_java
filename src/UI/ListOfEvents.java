@@ -40,13 +40,17 @@ public class ListOfEvents extends JPanel implements ListSelectionListener {
     }
 
     private String[] getNameListOfGameEvents(List<GameEvent> events) {
-        List<String> res = new ArrayList<String>();
+        List<String> str = new ArrayList<String>();
 
         for (GameEvent event : events) {
-            res.add(event.getGameEventName());
+            str.add(event.getGameEventName());
         }
 
-        return (String[]) res.toArray();
+        String[] res = new String[str.size()];
+        for (int i = 0; i < str.size(); i++) {
+            res[i] = str.get(i);
+        }
+        return res;
     }
 
     private void displayInformation(GameEvent event) {
@@ -54,6 +58,8 @@ public class ListOfEvents extends JPanel implements ListSelectionListener {
         display.setRegion(event.getGameEventLocation());
         display.setPrizePool(String.valueOf(event.getPrizepool()));
         display.setRatio(event.getRatio());
+        display.setStartDate(event.getStartDate());
+        display.setEndDate(event.getEndDate());
     }
 
     private GameEvent findSelectedGameEvent(List<GameEvent> events, String name) {
@@ -67,11 +73,11 @@ public class ListOfEvents extends JPanel implements ListSelectionListener {
 
     @Override
     public void valueChanged(ListSelectionEvent listSelectionEvent) {
-        JList<String> list = (JList) listSelectionEvent.getSource();
-        int index = list.getSelectedIndex();
-        
+        JList<String> source = (JList) listSelectionEvent.getSource();
+        int index = source.getSelectedIndex();
+
         if (index == -1) { return; }
-        GameEvent selectedEvent = this.findSelectedGameEvent(this.events, (String) list.getSelectedValue());
+        GameEvent selectedEvent = this.findSelectedGameEvent(this.events, (String) source.getSelectedValue());
         this.displayInformation(selectedEvent);
     }
 }
