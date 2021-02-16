@@ -95,6 +95,8 @@ public class StartWindow extends JFrame implements IUserInterface {
             this.events = events;
         } catch (SQLException e) {
             System.out.println(e);
+            InfoWindow.errorMessage(this, "Connection Error", "The connection between client ans sql server is failed");
+            System.exit(0);
         }
     }
 }
