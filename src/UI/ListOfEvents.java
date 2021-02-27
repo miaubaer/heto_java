@@ -43,7 +43,7 @@ public class ListOfEvents extends JPanel implements ListSelectionListener {
         List<String> str = new ArrayList<String>();
 
         for (GameEvent event : events) {
-            str.add(event.getGameEventName());
+            str.add(event.getName());
         }
 
         String[] res = new String[str.size()];
@@ -54,17 +54,12 @@ public class ListOfEvents extends JPanel implements ListSelectionListener {
     }
 
     private void displayInformation(GameEvent event) {
-        display.setName(event.getGameEventName());
-        display.setRegion(event.getGameEventLocation());
-        display.setPrizePool(String.valueOf(event.getPrizepool()));
-        display.setRatio(event.getRatio());
-        display.setStartDate(event.getStartDate());
-        display.setEndDate(event.getEndDate());
+        display.setTextToFields(event);
     }
 
     private GameEvent findSelectedGameEvent(List<GameEvent> events, String name) {
         for (GameEvent event : events) {
-            if (event.getGameEventName() == name) {
+            if (event.getName() == name) {
                 return event;
         }
     }

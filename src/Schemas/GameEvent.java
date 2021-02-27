@@ -1,11 +1,24 @@
 package Schemas;
 
+import java.util.Arrays;
 import java.util.Date;
 
-public class GameEvent {
-    private String GameEventName; 
-    private String GameEventLocation;
-    private double prizepool;
+public class GameEvent implements SchemaInterface {
+    public static final String[] columns = {
+        "id",
+        "name", 
+        "location", 
+        "prizepool",
+        "ratio",
+        "start_date",
+        "end_date"
+    };
+    public static final String table = "GameEvent";
+
+    private int id;
+    private String name;
+    private String location;
+    private int prizepool;
     private double[] ratio;
     private Date start;
     private Date end;
@@ -13,33 +26,50 @@ public class GameEvent {
     // private List<Team> teamList;
     // private List<Game> gameList;
 
-    public GameEvent(String GameEventName, String GameEventLocation, double prizepool, double[] ratio, Date start, Date end) {
-        this.GameEventName = GameEventName;
-        this.GameEventLocation = GameEventLocation;
+    public GameEvent(String name, String location, int prizepool, String ratio, Date start, Date end) {
+        this.name = name;
+        this.location = location;
         this.prizepool = prizepool;
         this.start = start;
         this.end = end;
-        
+
         this.setRatio(ratio);
     }
 
+    public GameEvent(int id, String name, String location, int prizepool, String ratio, Date start, Date end) {
+        this.id = id;
+        this.name = name;
+        this.location = location;
+        this.prizepool = prizepool;
+        this.start = start;
+        this.end = end;
+
+        this.setRatio(ratio);
+    }
 
     // Getter & Setter (in one-line-format for a better overview)
 
-    public String getGameEventName() { return GameEventName; }
-    public void setGameEventName(String GameEventName) { this.GameEventName = GameEventName; }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public String getGameEventLocation() { return GameEventLocation; }
-    public void setGameEventLocation(String GameEventLocation) { this.GameEventLocation = GameEventLocation; }
+    public String getName() { return name; }
 
-    // von Hermann
-    public double getPrizepool() { return this.prizepool; }
-    public void setPrizepool(double prizepool) { this.prizepool = prizepool; }
+    public void setName(String name) { this.name = name; }
+
+    public String getLocation() { return location; }
+
+    public void setLocation(String location) { this.location = location; }
+
+    public int getPrizepool() { return this.prizepool; }
+
+    public void setPrizepool(int prizepool) { this.prizepool = prizepool; }
 
     public Date getStartDate() { return this.start; }
+
     public void setStartDate(Date startDate) { this.start = startDate; }
 
     public Date getEndDate() { return this.end; }
+
     public void setEndDate(Date endDate) { this.end = endDate; }
 
     public String getRatio() {
@@ -47,14 +77,12 @@ public class GameEvent {
         for (double e : this.ratio) {
             res = res + String.valueOf(e) + ", ";
         }
-        return res.substring(0, res.length() - 2); 
+
+        return res.substring(0, res.length() - 2);
     }
 
-    // Variable in meinem Code war gleich der Variable teamList in deinem Code. (Hermann)
-    public void setRatio(double[] ratio) {
-
-        // HINZUFÜGEN: Prüfung ob angegebene Ratio vom Prizepool gleich 1 ist. Fallst nicht, Exception ausspucken. (Hermann)
-
-        this.ratio = ratio;
+    public void setRatio(String ratioString) {
+        this.ratio = Arrays.stream(ratioString.split(", ")).map(String::trim).mapToDouble(Double::parseDouble)
+                .toArray();
     }
 }

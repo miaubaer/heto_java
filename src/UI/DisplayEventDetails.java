@@ -1,15 +1,21 @@
 package UI;
 
 import java.awt.*;
-import java.text.DateFormat;
-import java.text.Format;
+import java.awt.event.*;
+import java.lang.ProcessHandle.Info;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.*;
 
-public class DisplayEventDetails extends JPanel {
+import Schemas.GameEvent;
+import Schemas.Queries;
+import Schemas.SchemaInterface;
+
+public class DisplayEventDetails extends JPanel implements ActionListener {
 
     /**
      *
@@ -17,27 +23,40 @@ public class DisplayEventDetails extends JPanel {
     private static final long serialVersionUID = 1L;
     private static final SimpleDateFormat DTF = new SimpleDateFormat("yyyy-MM-dd");
 
+    Connection connection;
+    private JFrame parent;
+    private boolean isEditable = false;
+    private GameEvent bufferedEvent;
+
     private JTextField name = new JTextField(16);
     private JTextField region = new JTextField(16);
-    private JTextField prizePool = new JTextField(16);
+    private JTextField prizepool = new JTextField(16);
     private JTextField ratio = new JTextField(16);
     private JTextField start = new JTextField(16);
     private JTextField end = new JTextField(16);
+    private JButton changeMode = new JButton("Schreibar");
+    private JButton showSpectors = new JButton("Zuschauer");
+    private JButton showGamePlan = new JButton("Spielplab");
+    private JButton showSponsors = new JButton("Sponsoren");
+    private JButton saveChanges = new JButton("Speichern");
 
     // taken places
     // team list
     // game list | low priority
 
-    public DisplayEventDetails() {
+    public DisplayEventDetails(Connection connection, JFrame parent) {
+        this.connection = connection;
+        this.parent = parent;
+
         GridBagLayout layout = new GridBagLayout();
         setLayout(layout);
-
         this.name.setEditable(false);
         this.region.setEditable(false);
-        this.prizePool.setEditable(false);
+        this.prizepool.setEditable(false);
         this.ratio.setEditable(false);
         this.start.setEditable(false);
         this.end.setEditable(false);
+        this.saveChanges.setEnabled(isEditable);
 
         addLabelToGrid(layout, new JLabel("Names: "), 0, 0, 1, 1);
         addLabelToGrid(layout, new JLabel("Ort: "), 0, 1, 1, 1);
@@ -48,63 +67,29 @@ public class DisplayEventDetails extends JPanel {
 
         addTextFieldToGrid(layout, this.name, 1, 0, 5, 1);
         addTextFieldToGrid(layout, this.region, 1, 1, 5, 1);
-        addTextFieldToGrid(layout, this.prizePool, 1, 2, 5, 1);
+        addTextFieldToGrid(layout, this.prizepool, 1, 2, 5, 1);
         addTextFieldToGrid(layout, this.ratio, 1, 3, 5, 1);
         addTextFieldToGrid(layout, this.start, 1, 4, 5, 1);
         addTextFieldToGrid(layout, this.end, 1, 5, 5, 1);
 
+        addButtonToGrid(layout, this.showSpectors, "spectors", 0, 6, 2, 2);
+        addButtonToGrid(layout, this.showSponsors, "sponsors", 2, 6, 2, 2);
+        addButtonToGrid(layout, this.showGamePlan, "plan", 4, 6, 2, 2);
+        addButtonToGrid(layout, this.changeMode, "mode", 0, 8, 2, 2);
+        addButtonToGrid(layout, this.saveChanges, "save", 2, 8, 4, 2);
     }
 
-    public String getName() {
-        return this.name.getText();
+    public void setTextToFields(GameEvent ge) {
+        this.bufferedEvent = ge;
+        this.name.setText(ge.getName());
+        this.region.setText(ge.getLocation());
+        this.ratio.setText(ge.getRatio());
+        this.prizepool.setText(Integer.toString(ge.getPrizepool()));
+        this.start.setText(DTF.format(ge.getStartDate()));
+        this.end.setText(DTF.format(ge.getEndDate()));
     }
 
-    public void setName(String name) {
-        this.name.setText(name);
-    }
-
-    public String getRegion() {
-        return this.region.getText();
-    }
-
-    public void setRegion(String region) {
-        this.region.setText(region);
-    }
-
-    public String getRatio() {
-        return this.ratio.getText();
-    }
-
-    public void setRatio(String ratio) {
-        this.ratio.setText(ratio);
-    }
-
-    public String getPrizePool() {
-        return this.prizePool.getText();
-    }
-
-    public void setPrizePool(String prizePool) {
-        this.prizePool.setText(prizePool);
-    }
-
-    public Date getStartDate() throws ParseException {
-        return DTF.parse(this.start.getText());
-    }
-    public void setStartDate(Date start) {
-        this.start.setText(DTF.format(start));
-    }
-
-    public Date getEndDate() throws ParseException {
-        return DTF.parse(this.end.getText());
-    }
-    public void setEndDate(Date end) {
-        this.end.setText(DTF.format(end));
-    }
-
-
-    // The method adds a JLAbel to Layout.
-    // Parameters: (layout, JLabel, position x, position y, size of cell dimension x, size if cell dimension y)
-    private void addLabelToGrid(GridBagLayout layout, JLabel l, int x, int y, int sx, int sy) {
+    private GridBagConstraints setCons(int x, int y, int sx, int sy) {
         GridBagConstraints cons = new GridBagConstraints();
 
         cons.insets = new Insets(5, 5, 5, 5);
@@ -114,25 +99,120 @@ public class DisplayEventDetails extends JPanel {
         cons.gridwidth = sx;
         cons.gridheight = sy;
         cons.fill = GridBagConstraints.BOTH;
+
+        return cons;
+    }
+
+    // The method adds a JLAbel to Layout.
+    // Parameters: (layout, JLabel, position x, position y, size of cell dimension
+    // x, size if cell dimension y)
+    private void addLabelToGrid(GridBagLayout layout, JLabel l, int x, int y, int sx, int sy) {
+        GridBagConstraints cons = setCons(x, y, sx, sy);
 
         layout.setConstraints(l, cons);
         add(l);
     }
 
     // The method adds a JTextField to Layout.
-    // Parameters: (layout, TextFiel, position x, position y, size of cell dimension x, size if cell dimension y)
+    // Parameters: (layout, TextFiel, position x, position y, size of cell dimension
+    // x, size if cell dimension y)
     private void addTextFieldToGrid(GridBagLayout layout, JTextField tf, int x, int y, int sx, int sy) {
-        GridBagConstraints cons = new GridBagConstraints();
-
-        cons.insets = new Insets(5, 5, 5, 5);
-
-        cons.gridx = x;
-        cons.gridy = y;
-        cons.gridwidth = sx;
-        cons.gridheight = sy;
-        cons.fill = GridBagConstraints.BOTH;
+        GridBagConstraints cons = setCons(x, y, sx, sy);
 
         layout.setConstraints(tf, cons);
         add(tf);
+    }
+
+    // The method adds a Button to Layout.
+    // Parameters: (layout, JButton, position x, position y, size of cell dimension
+    // x, size if cell dimension y)
+    private void addButtonToGrid(GridBagLayout layout, JButton b, String name, int x, int y, int sx, int sy) {
+        b.addActionListener(this);
+        b.setName(name);
+        GridBagConstraints cons = setCons(x, y, sx, sy);
+
+        layout.setConstraints(b, cons);
+        add(b);
+    }
+
+    private void toggleMode() {
+        if (this.isEditable) {
+            setTextToFields(this.bufferedEvent);
+        }
+
+        this.isEditable = !this.isEditable;
+
+        this.name.setEditable(this.isEditable);
+        this.region.setEditable(this.isEditable);
+        this.prizepool.setEditable(this.isEditable);
+        this.ratio.setEditable(this.isEditable);
+        this.start.setEditable(this.isEditable);
+        this.end.setEditable(this.isEditable);
+        this.saveChanges.setEnabled(this.isEditable);
+    }
+
+    private void saveChanges() {
+        try {
+            GameEvent ne = new GameEvent(
+                this.name.getText(), 
+                this.region.getText(),
+                Integer.parseInt(this.prizepool.getText()), 
+                this.ratio.getText(),
+                DTF.parse(this.start.getText()), 
+                DTF.parse(this.end.getText())
+            );
+
+            Queries.updateEvent(this.connection, this.bufferedEvent.getId(), ne);
+
+            this.bufferedEvent = ne;
+
+            Dialog.infoMessage(
+                this.parent,
+                "Success", 
+                "Daten sind in die Datenbank eingetragen."
+            );
+
+            toggleMode();
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            
+            Dialog.errorMessage(
+                this.parent,
+                "Formatfehler",
+                "Der Format der Daten ist fehlerhaft.\nDaten werden nicht abgespeichert."
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Dialog.errorMessage(
+                this.parent,
+                "Connection Error",
+                "The connection between client and database is failed.\nData will be restored"
+                );
+            
+            toggleMode();
+        } catch (ParseException e) {
+            e.printStackTrace();
+            Dialog.errorMessage(
+                this.parent,
+                "Datumfeld(-er) enthält(-en) Fehler.",
+                "Mindastens ein Dateumfeld ist fehlerhaft.\nDaten werden nicht abgespeichert."
+            );
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String name = ((JButton) e.getSource()).getName();
+
+        switch (name) {
+            case "mode":
+                toggleMode();
+                break;
+            case "save":
+                saveChanges();
+                break;
+            default:
+                break;
+        }
     }
 }
