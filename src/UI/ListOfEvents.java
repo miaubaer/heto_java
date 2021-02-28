@@ -11,9 +11,6 @@ import Schemas.GameEvent;
 
 public class ListOfEvents extends JPanel implements ListSelectionListener {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
     private DisplayEventDetails display;
     private List<GameEvent> events;
@@ -22,13 +19,12 @@ public class ListOfEvents extends JPanel implements ListSelectionListener {
         this.display = display;
         this.events = events;
 
-        initUI();
+        initUI(new JList<String>(getNameListOfGameEvents(this.events)));
     }
 
-    private void initUI() {
+    private void initUI(JList<String> list) {
         setLayout(new BorderLayout());
 
-        JList<String> list = new JList<String>(getNameListOfGameEvents(this.events));
 
         list.setVisible(true);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -68,6 +64,8 @@ public class ListOfEvents extends JPanel implements ListSelectionListener {
 
     @Override
     public void valueChanged(ListSelectionEvent listSelectionEvent) {
+        if (this.display == null) return ;
+        
         JList<String> source = (JList) listSelectionEvent.getSource();
         int index = source.getSelectedIndex();
 

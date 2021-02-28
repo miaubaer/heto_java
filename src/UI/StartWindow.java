@@ -32,6 +32,7 @@ public class StartWindow extends JFrame {
 
         // Frame Settings
         this.frame = design("Verwaltung", width, height);
+        this.frame.setResizable(false);
         Container c = getContentPane();
         setLayout(new BoxLayout(c, BoxLayout.X_AXIS));
 
@@ -62,7 +63,7 @@ public class StartWindow extends JFrame {
     private void getDataFromDatabase() {
 
         try {
-            this.events = Queries.getListOfEvents(connection);
+            this.events = Queries.selectAllEvents(connection);
         } catch (SQLException e) {
             System.out.println(e);
             Dialog.errorMessage(this, "Connection Error", "The connection between client and sql server is failed");

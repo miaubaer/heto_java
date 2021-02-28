@@ -3,7 +3,7 @@ package Schemas;
 import java.util.Arrays;
 import java.util.Date;
 
-public class GameEvent implements SchemaInterface {
+public class GameEvent {
     public static final String[] columns = {
         "id",
         "name", 

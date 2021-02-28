@@ -13,7 +13,6 @@ import javax.swing.*;
 
 import Schemas.GameEvent;
 import Schemas.Queries;
-import Schemas.SchemaInterface;
 
 public class DisplayEventDetails extends JPanel implements ActionListener {
 
@@ -35,7 +34,7 @@ public class DisplayEventDetails extends JPanel implements ActionListener {
     private JTextField start = new JTextField(16);
     private JTextField end = new JTextField(16);
     private JButton changeMode = new JButton("Schreibar");
-    private JButton showSpectors = new JButton("Zuschauer");
+    private JButton showSpectators = new JButton("Zuschauer");
     private JButton showGamePlan = new JButton("Spielplab");
     private JButton showSponsors = new JButton("Sponsoren");
     private JButton saveChanges = new JButton("Speichern");
@@ -72,7 +71,7 @@ public class DisplayEventDetails extends JPanel implements ActionListener {
         addTextFieldToGrid(layout, this.start, 1, 4, 5, 1);
         addTextFieldToGrid(layout, this.end, 1, 5, 5, 1);
 
-        addButtonToGrid(layout, this.showSpectors, "spectors", 0, 6, 2, 2);
+        addButtonToGrid(layout, this.showSpectators, "spectators", 0, 6, 2, 2);
         addButtonToGrid(layout, this.showSponsors, "sponsors", 2, 6, 2, 2);
         addButtonToGrid(layout, this.showGamePlan, "plan", 4, 6, 2, 2);
         addButtonToGrid(layout, this.changeMode, "mode", 0, 8, 2, 2);
@@ -200,6 +199,50 @@ public class DisplayEventDetails extends JPanel implements ActionListener {
         }
     }
 
+    private void showSpectators() {
+        try {
+            new PopupList(
+                this.parent,
+                Queries.selectAllSpectatorsByGameEventId(
+                    this.connection, 
+                    this.bufferedEvent.getId()),
+                "Spectators", 
+                1200, 
+                900
+            );
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            Dialog.errorMessage(
+                this.parent,
+                "Connection Problem",
+                "Daten konnten nicht abgefragt werden."
+            );
+        }
+    };
+
+    private void showSponsors() {
+        try {
+            new PopupList(
+                this.parent,
+                Queries.selectAllSponsorsByGameEventId(
+                    this.connection, 
+                    this.bufferedEvent.getId()),
+                "Sponsors", 
+                1200, 
+                900
+            );
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            Dialog.errorMessage(
+                this.parent,
+                "Connection Problem",
+                "Daten konnten nicht abgefragt werden."
+            );
+        }
+    };
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String name = ((JButton) e.getSource()).getName();
@@ -210,6 +253,12 @@ public class DisplayEventDetails extends JPanel implements ActionListener {
                 break;
             case "save":
                 saveChanges();
+                break;
+            case "spectators":
+                showSpectators();
+                break;
+            case "sponsors":
+                showSponsors();
                 break;
             default:
                 break;

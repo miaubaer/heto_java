@@ -12,13 +12,15 @@ import java.util.stream.Collectors;
 
 public class Queries {
     private static final SimpleDateFormat DTF = new SimpleDateFormat("yyyy-MM-dd");
-    private static String selectQuery = "SELECT %s FROM ESport.dbo.%s";
-    private static String updateQuery = "UPDATE ESport.dbo.%s SET %s WHERE %s";
+    private static String select = "SELECT %s FROM ESport.dbo.%s";
+    private static String selectByGameEventId = "SELECT %s FROM ESport.dbo.%s WHERE gameEventId=%s";
+    private static String update = "UPDATE ESport.dbo.%s SET %s WHERE %s";
 
-    public static List<GameEvent> getListOfEvents(Connection connection) throws SQLException {
+    // SELECT
+    public static List<GameEvent> selectAllEvents(Connection connection) throws SQLException {
         ResultSet rs = connection.createStatement().executeQuery(
             String.format(
-                selectQuery,
+                select,
                 Arrays.stream(GameEvent.columns)
                     .collect(Collectors.joining(", ")),
                 GameEvent.table)
@@ -49,6 +51,47 @@ public class Queries {
         return events;
     }
 
+    public static List<String> selectAllSpectatorsByGameEventId(Connection connection, int gameEventId) throws SQLException {
+        ResultSet rs = connection.createStatement().executeQuery(
+            String.format(
+                selectByGameEventId,
+                "*",
+                "Spectators",
+                gameEventId
+            )
+        );
+
+        List<String> spectators = new ArrayList<String>();
+
+        while (rs.next()) {
+            String name = rs.getString("name");
+            spectators.add(name);
+        }
+
+        return spectators;
+    }
+
+    public static List<String> selectAllSponsorsByGameEventId(Connection connection, int gameEventId) throws SQLException {
+        ResultSet rs = connection.createStatement().executeQuery(
+            String.format(
+                selectByGameEventId,
+                "*",
+                "Sponsors",
+                gameEventId
+            )
+        );
+
+        List<String> sponsors = new ArrayList<String>();
+
+        while (rs.next()) {
+            String name = rs.getString("name");
+            sponsors.add(name);
+        }
+
+        return sponsors;
+    }
+
+    // UPDATE
     public static void updateEvent(Connection connection, int id, GameEvent event) throws SQLException {
         String[] set = new String[GameEvent.columns.length - 1];
         
@@ -60,7 +103,7 @@ public class Queries {
         set[5] = String.format("%s=CAST('%s' AS DATE)", GameEvent.columns[6], DTF.format(event.getEndDate()));
         
         connection.createStatement().execute(String.format(
-            updateQuery,
+            update,
             GameEvent.table,
             Arrays.stream(set).collect(Collectors.joining(", ")),
             String.format("%s=%d", GameEvent.columns[0], id)
