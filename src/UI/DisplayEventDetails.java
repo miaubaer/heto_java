@@ -2,12 +2,10 @@ package UI;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.lang.ProcessHandle.Info;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.swing.*;
 
@@ -15,10 +13,6 @@ import Schemas.GameEvent;
 import Schemas.Queries;
 
 public class DisplayEventDetails extends JPanel implements ActionListener {
-
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
     private static final SimpleDateFormat DTF = new SimpleDateFormat("yyyy-MM-dd");
 

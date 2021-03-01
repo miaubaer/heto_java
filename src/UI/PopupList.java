@@ -15,7 +15,7 @@ public class PopupList {
     private JDialog frame;
 
     public PopupList(JFrame parent, List<String> list, String title, int w, int h) {
-        this.list = new JList<String>(ListToArray(list));
+        this.list = new JList<String>(listToArray(list));
 
         this.frame = new JDialog(parent, title, true);
 
@@ -31,7 +31,7 @@ public class PopupList {
         this.frame.setVisible(true);
     }
 
-    private String[] ListToArray(List<String> list) {
+    private String[] listToArray(List<String> list) {
         String[] res = new String[list.size()];
 
         for(int i = 0; i < list.size(); i++) {
