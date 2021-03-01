@@ -14,7 +14,7 @@ abstract class Game {
     public int getId() { return this.id; }
 
     public String getDuration() { return this.duration; }
-    public void setDuration(int hours, int minutes) { 
+    public void setDuration(int hours, int minutes) {
         this.duration = String.format("%d:%d", hours, minutes);
     }
 

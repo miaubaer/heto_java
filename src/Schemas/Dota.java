@@ -4,7 +4,9 @@ public class Dota extends Game {
     // As an example: defeated towers [left, right]
     private int[] scores = new int[2];
     private Team throneDefeated;
-    // hh:mm
+
+    // each team choose 5 heroes
+    // private String[][] = new String[2][5];
 
     public Dota(int id, Team[] teams) {
         super(id, teams);
