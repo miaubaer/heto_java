@@ -14,7 +14,7 @@ public class PopupList {
     private JList<String> list;
     private JDialog frame;
 
-    public PopupList(JFrame parent, List<String> list, String title, int h, int w) {
+    public PopupList(JFrame parent, List<String> list, String title, int w, int h) {
         this.list = new JList<String>(ListToArray(list));
 
         this.frame = new JDialog(parent, title, true);
@@ -24,10 +24,10 @@ public class PopupList {
 
         JScrollPane p = new JScrollPane(this.list);
 
+        this.frame.setSize(w, h);
         this.frame.setResizable(false);
         this.frame.setLayout(new BorderLayout());
         this.frame.add(p, BorderLayout.CENTER);
-        this.frame.pack();
         this.frame.setVisible(true);
     }
 

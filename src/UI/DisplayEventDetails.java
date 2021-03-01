@@ -35,7 +35,7 @@ public class DisplayEventDetails extends JPanel implements ActionListener {
     private JTextField end = new JTextField(16);
     private JButton changeMode = new JButton("Schreibar");
     private JButton showSpectators = new JButton("Zuschauer");
-    private JButton showGamePlan = new JButton("Spielplab");
+    private JButton showGamePlan = new JButton("Spielplan");
     private JButton showSponsors = new JButton("Sponsoren");
     private JButton saveChanges = new JButton("Speichern");
 
@@ -57,7 +57,7 @@ public class DisplayEventDetails extends JPanel implements ActionListener {
         this.end.setEditable(false);
         this.saveChanges.setEnabled(isEditable);
 
-        addLabelToGrid(layout, new JLabel("Names: "), 0, 0, 1, 1);
+        addLabelToGrid(layout, new JLabel("Name: "), 0, 0, 1, 1);
         addLabelToGrid(layout, new JLabel("Ort: "), 0, 1, 1, 1);
         addLabelToGrid(layout, new JLabel("Belohnung: "), 0, 2, 1, 1);
         addLabelToGrid(layout, new JLabel("Anteile: "), 0, 3, 1, 1);
@@ -207,8 +207,8 @@ public class DisplayEventDetails extends JPanel implements ActionListener {
                     this.connection, 
                     this.bufferedEvent.getId()),
                 "Spectators", 
-                1200, 
-                900
+                300, 
+                500
             );
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -229,8 +229,8 @@ public class DisplayEventDetails extends JPanel implements ActionListener {
                     this.connection, 
                     this.bufferedEvent.getId()),
                 "Sponsors", 
-                1200, 
-                900
+                300, 
+                500
             );
         } catch (SQLException e) {
             // TODO Auto-generated catch block

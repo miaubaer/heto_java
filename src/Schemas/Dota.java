@@ -1,26 +1,33 @@
 package Schemas;
 
 public class Dota extends Game {
-    // check: https://dota2.gamepedia.com/Buildings#Outposts
+    // As an example: defeated towers [left, right]
+    private int[] scores = new int[2];
+    private Team throneDefeated;
+    // hh:mm
 
-    // FROM Generate All Quick
-    public Dota() {
+    public Dota(int id, Team[] teams) {
+        super(id, teams);
+    }
+    
+    public Dota(int id, Team[] teams, String duration, Team throneDefeated, int[] scores) {
+        super(id, teams);
 
+        this.throneDefeated = throneDefeated;
+        this.scores = scores;
     }
 
-    //Add-in BEGIN
+
+    public Team getLeft() { return this.teams[0]; }
+
+    public Team getRight() { return this.teams[1]; }
+
+    public int[] getScores() { return this.scores; }
+
+    public void setWinner(Team throneDefeated, int[] scores) {
+        this.throneDefeated = throneDefeated;
+        this.scores = scores;
+    }
     @Override
-    public void displayGameInfo() {
-        System.out.println("DotA 2 (Defence of the Ancients) ist ein Computerspiel aus dem Genre der MOBA. Bei dem Spiel treten zwei Teams mit je fünf Spielern gegeneinander an. Wobei jedes Team das eigene Ancient verteidigen muss um zu gewinnen. Ein Team übernimmt die Rolle der Dire , während das andere Team die Radiant sind.");
-    }
-    //Add-in END
-
-
-
-
-
-
-
-
-
+    Team getWinner() { return this.throneDefeated; }
 }

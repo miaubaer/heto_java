@@ -1,50 +1,55 @@
 package Schemas;
 
 public class CSGO extends Game {
+    // first team is always starting on the counter-strike side
+    // second team is always starting on the terrorist side
+    // the sides will be swapped after first half of the game
 
-    private int currentRound;
-    private Team ct;
-    private Team t;
-    // [CT, T]
-    private int[] scores = new int[2];
-    private Team winner; 
+    // The variables are showing starting positions of teams
+    // scores: [team1: [ct, t], team2: [t, ct]]
+    private int[][] scores = new int[2][2];
 
-    public CSGO(String map, Team ct, Team t) {
-        this.currentRound = 1;
-        this.ct = ct;
-        this.t = t;
-        this.scores[0] = 0; // ct
-        this.scores[1] = 0; // t
+    public CSGO(int id, Team[] teams) {
+        super(id, teams);
+    }
+
+    public CSGO(int id, Team[] teams, int[][] scores, int hours, int minutes) {
+        super(id, teams);
+
+        this.setWinner(scores, hours, minutes);
+    }
+
+
+    public Team getCounterStrike() { return this.teams[0]; }
+
+    public Team getTerrorist() { return this.teams[1]; }
+
+    public int[] getScores() {
+        int[] res = {
+            this.scores[0][0] + this.scores[1][0],
+            this.scores[0][1] + this.scores[1][1]
+        };
+
+        return res;
+    }
+
+    public void setWinner(int[][] scores, int hours, int minutes) {
+        this.scores = scores;
+        this.setDuration(hours, minutes);
     }
 
     @Override
-    void displayGameInfo() {
+    Team getWinner() {
+        if (this.scores == null) return null;
 
-    }
+        int t1 = this.scores[0][0] + this.scores[1][0];
+        int t2 = this.scores[0][1] + this.scores[1][1];
 
-    public void roundPlayed(String winner) {
-        int ind;
-        if (winner.toLowerCase() == "ct") {
-            ind = 0;
-        } else if (winner.toLowerCase() == "t") {
-            ind = 1;
-        } else { return; }
-
-        this.currentRound++;
-        this.scores[ind]++;
-
-        if (currentRound == 15) {
-            // change sides
+        // there must be a winner.
+        if (t1 > t2) {
+            return this.teams[0];
+        } else {
+            return this.teams[1];
         }
-
-        if (scores[0] == 16) {
-            this.winner = ct;
-        } else if (scores[1] == 16) {
-            this.winner = t;
-        }
-    }
-
-    public Team getWinner() {
-        return winner;
     }
 }
