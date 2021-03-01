@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 
 public class Queries {
     private static final SimpleDateFormat DTF = new SimpleDateFormat("yyyy-MM-dd");
-    private static String select = "SELECT %s FROM ESport.dbo.%s";
-    private static String selectByGameEventId = "SELECT %s FROM ESport.dbo.%s WHERE gameEventId=%s";
-    private static String update = "UPDATE ESport.dbo.%s SET %s WHERE %s";
+    private static final String select = "SELECT %s FROM ESport.dbo.%s";
+    private static final String selectByGameEventId = "SELECT %s FROM ESport.dbo.%s WHERE gameEventId=%s";
+    private static final String update = "UPDATE ESport.dbo.%s SET %s WHERE %s";
 
     // SELECT
     public static List<GameEvent> selectAllEvents(Connection connection) throws SQLException {

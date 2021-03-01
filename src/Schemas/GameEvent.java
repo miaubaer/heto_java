@@ -22,9 +22,6 @@ public class GameEvent {
     private double[] ratio;
     private Date start;
     private Date end;
-    // private Team[] places;
-    // private List<Team> teamList;
-    // private List<Game> gameList;
 
     public GameEvent(String name, String location, int prizepool, String ratio, Date start, Date end) {
         this.name = name;
